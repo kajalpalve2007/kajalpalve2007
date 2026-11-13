@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kajal Palve | Web Developer</title>
+<meta name="description" content="Portfolio of Kajal Navnath Palve, an Information Technology student learning full-stack web development.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <nav class="wrap" aria-label="Main">
+    <a class="logo" href="#top">KP.</a>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><button id="theme" aria-label="Toggle dark mode">Theme</button></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="top">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <h1>Hi, I'm Kajal Palve.</h1>
+      <p>Information Technology student learning to build web apps with <span class="typed" id="typed">HTML</span>. I like turning ideas into working websites.</p>
+      <div class="btns">
+        <a class="btn primary" href="#projects">See my projects</a>
+        <a class="btn" href="resume.pdf" download>Download resume</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="wrap about">
+      <div>
+        <h2>About me</h2>
+        <p>I'm Kajal Navnath Palve, a second-year engineering student at Imperial College of Engineering, Titwala. I completed my Diploma in Computer Engineering before this, and that is where my interest in web development began.</p>
+        <p>I'm a fresher with no work experience yet, and I learn by building. I'm now working on HTML, CSS and JavaScript, and learning the MERN stack (MongoDB, Express, React, Node.js). I'm looking for an internship where I can learn from a team and contribute.</p>
+      </div>
+      <div>
+        <h2>Skills</h2>
+        <h3 class="sub">I use</h3>
+        <div class="skills" id="skills"></div>
+        <h3 class="sub">I'm learning</h3>
+        <div class="skills" id="learning"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="wrap">
+      <h2>Education</h2>
+      <div class="timeline">
+        <article class="item">
+          <h3>B.Tech in Information Technology</h3>
+          <p class="where">Imperial College of Engineering, Titwala</p>
+          <p class="meta">Currently in 2nd year</p>
+        </article>
+        <article class="item">
+          <h3>Diploma in Computer Engineering</h3>
+          <p class="where">G. V. Acharya Polytechnic, Shelu</p>
+          <p class="meta">Score: 75.00%</p>
+        </article>
+        <article class="item">
+          <h3>10th (SSC)</h3>
+          <p class="where">Mitra Mandal School</p>
+          <p class="meta">Score: 80%</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="wrap">
+      <h2>Projects</h2>
+      <div class="filters" id="filters" role="group" aria-label="Filter projects"></div>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="wrap">
+      <h2>Contact me</h2>
+      <ul class="contact-list">
+        <li>Phone: <a href="tel:+9196990998793">96990998793</a></li>
+        <li>Email: <a href="mailto:kajalpalve2007@gmail.com">kajalpalve2007@gmail.com</a></li>
+        <li>GitHub: <a href="https://github.com/kajalpalve2007" target="_blank" rel="noopener">github.com/kajalpalve2007</a></li>
+        <li>LinkedIn: <a href="https://www.linkedin.com/in/kajal-palve-257571417" target="_blank" rel="noopener">Kajal Palve</a></li>
+      </ul>
+      <form id="form" novalidate>
+        <label>Name <input name="name" required autocomplete="name"></label>
+        <label>Email <input name="email" type="email" required autocomplete="email"></label>
+        <label>Message <textarea name="message" required></textarea></label>
+        <button class="btn primary" type="submit">Send message</button>
+        <p id="msg" role="status"></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">&copy; 2026 Kajal Navnath Palve</div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
