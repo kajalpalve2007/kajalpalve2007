@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KAJAL PALVE | MERN Stack Developer</title>
+<meta name="description" content="Portfolio of Your Name, a full-stack developer building with React, Node.js and MongoDB.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* ---------- Colors & fonts: change these to restyle the whole site ---------- */
+  :root {
+    --bg: #eef2f7;
+    --surface: #ffffff;
+    --ink: #14213d;
+    --muted: #55627a;
+    --line: #d5dce8;
+    --accent: #2f5bea;
+    --accent-ink: #ffffff;
+    --head: "Bricolage Grotesque", system-ui, sans-serif;
+    --body: "Inter", system-ui, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e1424; --surface: #161e33; --ink: #e8edf8;
+      --muted: #9aa7c2; --line: #263150; --accent: #7a9bff; --accent-ink: #0e1424;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e1424; --surface: #161e33; --ink: #e8edf8;
+    --muted: #9aa7c2; --line: #263150; --accent: #7a9bff; --accent-ink: #0e1424;
+  }
+
+  * { box-sizing: border-box; margin: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+  body { background: var(--bg); color: var(--ink); font: 400 1rem/1.65 var(--body); }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+  .wrap { width: min(1040px, 92%); margin-inline: auto; }
+  section { padding: 5rem 0; }
+  h1, h2, h3 { font-family: var(--head); line-height: 1.1; }
+  h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin-bottom: 2rem; }
+
+  /* ---------- Navbar ---------- */
+  header { position: sticky; top: 0; z-index: 10; background: var(--bg); border-bottom: 1px solid var(--line); }
+  nav { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .logo { font: 800 1.2rem var(--head); text-decoration: none; }
+  nav ul { display: flex; gap: 1.5rem; list-style: none; padding: 0; align-items: center; }
+  nav a { text-decoration: none; color: var(--muted); font-weight: 500; }
+  nav a:hover { color: var(--ink); }
+  #theme { background: none; border: 1px solid var(--line); color: var(--ink); border-radius: 8px; padding: .35rem .7rem; cursor: pointer; font: inherit; }
+  @media (max-width: 640px) { nav ul li:not(:last-child):not(:nth-child(-n+3)) { display: none; } nav ul { gap: 1rem; } }
+
+  /* ---------- Hero ---------- */
+  .hero { padding: 6rem 0 5rem; }
+  .hero h1 { font-size: clamp(2.6rem, 8vw, 5.5rem); font-weight: 800; letter-spacing: -0.03em; max-width: 14ch; }
+  .hero p { color: var(--muted); font-size: 1.15rem; max-width: 52ch; margin: 1.5rem 0 2rem; }
+  .btns { display: flex; gap: .8rem; flex-wrap: wrap; }
+  .btn { display: inline-block; padding: .8rem 1.4rem; border-radius: 10px; font-weight: 500; text-decoration: none; border: 1px solid var(--ink); }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  .btn:hover { transform: translateY(-2px); }
+  .typed { color: var(--accent); }
+
+  /* ---------- About & skills ---------- */
+  .about { display: grid; grid-template-columns: 1.3fr 1fr; gap: 3rem; }
+  @media (max-width: 760px) { .about { grid-template-columns: 1fr; } }
+  .about p + p { margin-top: 1rem; }
+  .skills { display: flex; flex-wrap: wrap; gap: .6rem; align-content: start; }
+  .skills span { background: var(--surface); border: 1px solid var(--line); padding: .45rem .9rem; border-radius: 999px; font-weight: 500; }
+
+  /* ---------- Projects ---------- */
+  .filters { display: flex; gap: .5rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+  .filters button { background: none; border: 1px solid var(--line); color: var(--ink); padding: .4rem 1rem; border-radius: 999px; cursor: pointer; font: inherit; }
+  .filters button.on { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 1.2rem; }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 1.5rem; display: flex; flex-direction: column; gap: .8rem; }
+  .card h3 { font-size: 1.35rem; }
+  .card p { color: var(--muted); flex: 1; }
+  .tags { display: flex; flex-wrap: wrap; gap: .4rem; font-size: .85rem; color: var(--accent); font-weight: 500; }
+  .links { display: flex; gap: 1rem; font-weight: 500; }
+  .links a { text-decoration: underline; text-underline-offset: 4px; }
+
+  /* ---------- Contact ---------- */
+  form { display: grid; gap: 1rem; max-width: 560px; }
+  label { display: grid; gap: .35rem; font-weight: 500; }
+  input, textarea { font: inherit; padding: .75rem .9rem; border-radius: 10px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); }
+  textarea { min-height: 130px; resize: vertical; }
+  #msg { min-height: 1.5rem; font-weight: 500; }
+  footer { border-top: 1px solid var(--line); padding: 2rem 0; color: var(--muted); text-align: center; }
+
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .btn:hover { transform: none; } }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap" aria-label="Main">
+    <a class="logo" href="#top">YN.</a>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><button id="theme" aria-label="Toggle dark mode">Theme</button></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="top">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <h1>Hi, I'm Your Name.</h1>
+      <p>I build full-stack web apps with <span class="typed" id="typed">React</span>. Currently learning, building and shipping projects with the MERN stack.</p>
+      <div class="btns">
+        <a class="btn primary" href="#projects">See my projects</a>
+        <a class="btn" href="resume.pdf" download>Download resume</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="wrap about">
+      <div>
+        <h2>About me</h2>
+        <p>I'm a developer from Pune, India, who enjoys turning ideas into working products. I build the whole thing: the interface in React, the API in Node.js and Express, and the data in MongoDB.</p>
+        <p>I learn by building. Every project in this portfolio is deployed and has its code on GitHub. Right now I'm looking for an internship or junior role where I can keep growing.</p>
+      </div>
+      <div>
+        <h2>Skills</h2>
+        <div class="skills" id="skills"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="wrap">
+      <h2>Projects</h2>
+      <div class="filters" id="filters" role="group" aria-label="Filter projects"></div>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="wrap">
+      <h2>Contact me</h2>
+      <form id="form" novalidate>
+        <label>Name <input name="name" required autocomplete="name"></label>
+        <label>Email <input name="email" type="email" required autocomplete="email"></label>
+        <label>Message <textarea name="message" required></textarea></label>
+        <button class="btn primary" type="submit">Send message</button>
+        <p id="msg" role="status"></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a href="https://github.com/yourname">GitHub</a> &nbsp;|&nbsp;
+    <a href="https://linkedin.com/in/yourname">LinkedIn</a> &nbsp;|&nbsp;
+    <a href="mailto:you@example.com">you@example.com</a>
+  </div>
+</footer>
+
+<script>
+  /* ---------- EDIT YOUR DATA HERE ---------- */
+  const skills = ["HTML", "CSS", "JavaScript", "React", "Node.js", "Express", "MongoDB", "Git & GitHub", "REST APIs", "JWT Auth"];
+
+  const projects = [
+    { title: "Portfolio Website", type: "Frontend", tags: ["HTML", "CSS", "JavaScript"],
+      desc: "This site. Responsive, with dark mode and a project filter.",
+      live: "#", code: "https://github.com/yourname/portfolio" },
+    { title: "Todo App with Login", type: "Full-stack", tags: ["React", "Node.js", "MongoDB", "JWT"],
+      desc: "Users register, log in and manage their own tasks. Secured with JWT.",
+      live: "#", code: "https://github.com/yourname/todo-app" },
+    { title: "E-Commerce Store", type: "Full-stack", tags: ["React", "Express", "MongoDB"],
+      desc: "Product catalogue, cart, checkout and an admin panel.",
+      live: "#", code: "https://github.com/yourname/ecommerce" }
+  ];
+
+  const roles = ["React", "Node.js", "MongoDB", "JavaScript"];
+
+  /* ---------- Skills ---------- */
+  document.getElementById("skills").innerHTML = skills.map(s => `<span>${s}</span>`).join("");
+
+  /* ---------- Projects + filter ---------- */
+  const grid = document.getElementById("grid");
+  const filters = document.getElementById("filters");
+  const types = ["All", ...new Set(projects.map(p => p.type))];
+
+  function render(type) {
+    const list = type === "All" ? projects : projects.filter(p => p.type === type);
+    grid.innerHTML = list.map(p => `
+      <article class="card">
+        <h3>${p.title}</h3>
+        <p>${p.desc}</p>
+        <div class="tags">${p.tags.map(t => `<span>${t}</span>`).join("")}</div>
+        <div class="links"><a href="${p.live}">Live demo</a><a href="${p.code}">Source code</a></div>
+      </article>`).join("");
+    filters.querySelectorAll("button").forEach(b => b.classList.toggle("on", b.dataset.t === type));
+  }
+  filters.innerHTML = types.map(t => `<button data-t="${t}">${t}</button>`).join("");
+  filters.addEventListener("click", e => { if (e.target.dataset.t) render(e.target.dataset.t); });
+  render("All");
+
+  /* ---------- Rotating word in hero ---------- */
+  let i = 0;
+  const typed = document.getElementById("typed");
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    setInterval(() => { i = (i + 1) % roles.length; typed.textContent = roles[i]; }, 2000);
+  }
+
+  /* ---------- Theme toggle ---------- */
+  document.getElementById("theme").addEventListener("click", () => {
+    const root = document.documentElement;
+    const dark = getComputedStyle(root).getPropertyValue("--bg").trim() === "#0e1424";
+    root.dataset.theme = dark ? "light" : "dark";
+  });
+
+  /* ---------- Contact form (demo) ----------
+     For now it only validates. In Step 3 you will connect it to your Node.js API:
+     fetch("https://your-api.com/api/contact", { method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(data) }) */
+  document.getElementById("form").addEventListener("submit", e => {
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(e.target));
+    const msg = document.getElementById("msg");
+    if (!data.name || !/^\S+@\S+\.\S+$/.test(data.email) || !data.message) {
+      msg.textContent = "Please fill in your name, a valid email and a message.";
+      return;
+    }
+    console.log("Form data:", data);
+    msg.textContent = "Thanks, " + data.name + "! Your message is ready to send once the backend is connected.";
+    e.target.reset();
+  });
+</script>
+</body>
+</html>
